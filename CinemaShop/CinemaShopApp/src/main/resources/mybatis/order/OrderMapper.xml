@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gjyniubi.cinema.app.core.order.mapper.OrderMapper">
+
+    <select id="selectOrderList" resultType="cn.gjyniubi.cinema.app.core.order.dto.ListOrderDto">
+        select `order`.*,doc_hall.name as hallName,doc_cinema.name as cinemaName,doc_film.name as filmName,
+        film_schedule.begin_time as begin,film_schedule.end_time as end  from `order`
+        left join film_schedule on film_schedule.id = `order`.schedule_id
+        left join doc_cinema on doc_cinema.id = film_schedule.cinema_id
+        left join doc_film on doc_film.id = film_schedule.film_id
+        left join doc_hall on doc_hall.id = film_schedule.hall_id
+        where
+        <if test="q.offset!=null and q.offset>0">
+            `order`.id &lt; #{q.offset} and
+        </if>
+                `order`.cus_id = #{cusId}
+        order by `order`.id desc limit #{q.pageSize}
+    </select>
+</mapper>

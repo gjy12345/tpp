@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gjyniubi.cinema.app.core.cinema.mapper.FilmScheduleMapper">
+
+    <select id="selectCinemaSchedules" resultType="cn.gjyniubi.cinema.common.entry.FilmSchedule">
+        select * from film_schedule
+        where logic_del = 0
+        and film_schedule.cinema_id = #{cinemaId}
+        and film_schedule.begin_time &gt;= now()
+        and TO_DAYS(film_schedule.begin_time) &lt;= TO_DAYS(#{end})
+    </select>
+</mapper>

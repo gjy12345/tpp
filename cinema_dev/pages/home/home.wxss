@@ -1,0 +1,119 @@
+.top_city{
+    line-height: 30px;
+}
+.down{
+    user-select: none;
+    color: #000;
+    font-family: Helvetica Neue,Helvetica,Arial,Hiragino Sans GB,Microsoft Yahei,STXihei,SimHei,WenQuanYi Micro Hei,Droid Sans,sans-serif;
+    font-size: 0;
+    line-height: 13.3vw;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    margin: 12px;
+    padding: 0;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 3px;
+    width: 8px;
+    height: 4px;
+    position: relative;
+}
+.down:before{
+    content: "";
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid #333;
+    display: block;
+    position: absolute;
+    margin: -1px 0 0 -2px;
+}
+.swich_menu_text{
+    margin-right: 15px;
+    line-height: 30px;
+    margin-left: 10px;
+    font-weight: bold;
+    color: gray;
+}
+
+.text_active{
+    color: red;
+    border-bottom: 1px solid red;
+    border-bottom-width: 2px;
+    padding-bottom:2px;
+}
+
+.film_item{
+    margin: 4vw;
+    margin-top: 2vw;
+    display: flex;
+    height: 25.3vw;
+}
+.film_cover_layout{
+    width: 17.3vw;
+    height: 25.3vw;
+}
+.film_cover{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background: #e2e2e2 no-repeat 50%;
+    border-radius: 6px;
+    background-image: url(https://gw.alicdn.com/tfs/TB1B5m3hQT2gK0jSZPcXXcKkpXa-62-62.svg);
+    align-items: center;
+    width: 17.3vw;
+    height: 25.3vw;
+    background-size: 8vw 8vw;
+}
+
+.film_name{
+    margin: 2vw;
+    margin-top: 0vw;
+    font-weight: bold;
+    font-size: 16px;
+    display: block;
+}
+.gray_text{
+    margin: 0.6vw;
+    margin-left: 2vw;
+    display: block;
+    color: gray;
+    font-size: 14px;
+}
+.buy{
+    outline: 0;
+    text-decoration: none;
+    border: 0;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    color: #fff;
+    background-color: transparent;
+    box-sizing: border-box;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 13px;
+    font-size: 12px;
+    border-radius: 120px;
+    background-image: linear-gradient(45deg,#ff5456,#ff3d5c);
+}
+.buy_layout{
+    display: flex;
+    align-self: center;
+}
+.film_info{
+    flex: 1;
+    display: flex;
+    flex-direction:column
+}
+.time{
+    margin-left: 10px;
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

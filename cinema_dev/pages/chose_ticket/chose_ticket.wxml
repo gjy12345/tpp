@@ -1,0 +1,69 @@
+<view>
+    <view class="top_layout">
+        <image src="../../images/img/cinema_bg_pc.jpeg" style="width:100%;height:18vh"></image>
+        <view class="top_mk">
+        </view>
+        <view class="info" style="backgroud:'../../images/img/cinema_bg_pc.jpeg'">
+            <view class="cinema_name">{{cinema.name}}</view>
+            <view class="services">{{cinema.services}}</view>
+            <view class="cinema_address">{{cinema.fullPosition}}</view>
+        </view>
+    </view>
+    <view class="film_content">
+        <image wx:for="{{films}}" wx:key="uid" src="{{resourceUrl+item.cover}}" data-value="{{index}}" class="film_cover {{filmIndex==index?'film_cover_active':''}}" bindtap="clickFilm"></image>
+    </view>
+
+    <view class="film_info" wx:if="{{schedule.length>0}}">
+        <view class="film_name_layout">
+            <view class="film_name">{{currentFilm.name}}</view>
+            <view class="pf">淘票票评分</view>
+            <view class="score">{{currentFilm.score?currentFilm.score:0}}</view>
+        </view>
+        <view class="gray_text" >{{currentFilm.duration}} | 
+        <block wx:for="{{currentFilm.types}}" wx:key="id">
+            {{index>0?',':''}} {{item.name}} 
+        </block>
+         | {{currentFilm.star}}</view>
+    </view>
+    <view wx:if="{{schedule.length===0}}" style="text-align:center">
+        暂无排片
+    </view>
+
+    <view class="schedule_content">
+        <view class="chose_days" id="chose_days">
+            <view class="item {{currentDay===index?'day_item_active':''}}" wx:for="{{currentSchedules}}" wx:key="day"
+                data-value="{{index}}" bindtap="changeDay">
+                {{item.day}}
+            </view>
+        </view>
+        <!-- f5f6f8 -->
+        <view style="background-color: #f5f6f8;height: {{scheduleHeight}}px;">
+            <view id="schedule_list">
+                <view class="schedule_item" wx:for="{{currentSchedule}}" wx:key="id">
+                    <view class="schedule_time">
+                        <view class="begin_time">
+                            {{item.begin}}
+                        </view>
+                        <view class="end_time">
+                            {{item.end}}散场
+                        </view>
+                    </view>
+                    <view class="schedule_info">
+                        <view class="end_time" style="color:black">
+                            {{currentFilm.lang}}
+                        </view>
+                        <view class="hall">
+                            {{item.hallName}}
+                        </view>
+                    </view>
+                    <view class="money">
+                        {{item.minPrice}}￥<text class="mini_gray">起</text>
+                    </view>
+                    <view class="buy" data-hall="{{item.hallName}}" data-begin="{{item.begin}}" data-value="{{item.uid}}" bindtap="goChoseSite">
+                        购票
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

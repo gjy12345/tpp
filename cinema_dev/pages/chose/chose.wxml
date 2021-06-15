@@ -1,0 +1,57 @@
+<view id="root">
+    <view class="top_info" id="top" style="z-index: 2">
+        <view class="gray_text f1 tl">{{day}}</view>
+        <view class="gray_text f2 tc">{{begin}}</view>
+        <view class="gray_text f1 tr">{{hall}}</view>
+    </view>
+    <view id="icon_tips" style="z-index:2">
+        <view>可选: <image src="/images/img/gz.png"></image>
+        </view>
+        <view>已选: <image src="/images/img/yx.png"></image>
+        </view>
+        <view>已售: <image src="/images/img/ys.png"></image>
+        </view>
+        <view>不可购买: <image src="/images/img/normal_jz.png"></image>
+        </view>
+        <view>故障: <image src="/images/img/gz.png"></image>
+        </view>
+    </view>
+    <view id="screen" style="z-index:2">
+        <view class="screen">
+            <view class="screen-text">屏幕方向</view>
+        </view>
+    </view>
+    <view class="content">
+        <movable-area out-of-bounds style="height:{{height}}px;width:100vw;" scale-area>
+            <movable-view scale="true" style="width:{{mvWidth}}px;height:{{mvHeight}}px" inertia="true"
+                bindscale="onScale" out-of-bounds class="mv" scale-max="3" scale-min="1" direction="all">
+                <view id="site_content">
+                    <view class="site_line" wx:for="{{siteImages}}" wx:for-index="i" wx:key="this" wx:for-item="row">
+                        <image class="site_icon" wx:for-index="j" wx:for="{{row}}" style="height:{{iconH}}px;width:{{iconW}}px"
+                            src="{{item}}" data-x="{{i}}" data-y="{{j}}" wx:key="this" bindtap="choseSite"></image>
+                    </view>
+                </view>
+            </movable-view>
+        </movable-area>
+    </view>
+    <view class="selects" id="s" style="z-index:2" >
+        <view class="text" wx:if="{{choseSites.length>0}}">
+            已选座位:
+        </view>
+        <view class="sites">
+            <view class="site" wx:for="{{choseSites}}" wx:key="this">
+                <view class="where">
+                    {{item.row}}排{{item.column}}座
+                </view>
+                <view class="money">
+                    ￥{{item.price}}
+                </view>
+            </view>
+        </view>
+    </view>
+    <view id="btn" style="z-index:2">
+        <view class="btn" bindtap="submitTickets">
+            确认选座
+        </view>
+    </view>
+</view>

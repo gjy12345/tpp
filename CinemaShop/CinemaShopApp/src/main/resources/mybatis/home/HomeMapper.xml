@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gjyniubi.cinema.app.core.home.mapper.HomeMapper">
+
+    <select id="selectNowShowingFilm" resultType="cn.gjyniubi.cinema.app.core.home.dto.SimpleFilmDto">
+        select *
+        from doc_film
+        where doc_film.show_time &lt;= SYSDATE()
+          and doc_film.logic_del = 0
+          and doc_film.status = 1
+        order by doc_film.weight desc,doc_film.show_time desc, doc_film.score desc
+        limit #{offset},#{pageSize}
+    </select>
+    <select id="selectWillShowFilm" resultType="cn.gjyniubi.cinema.app.core.home.dto.SimpleFilmDto">
+        select *
+        from doc_film
+        where doc_film.show_time &gt; SYSDATE()
+          and doc_film.logic_del = 0
+          and doc_film.status = 1
+        order by doc_film.weight desc,doc_film.show_time asc
+        limit #{offset},#{pageSize}
+    </select>
+</mapper>

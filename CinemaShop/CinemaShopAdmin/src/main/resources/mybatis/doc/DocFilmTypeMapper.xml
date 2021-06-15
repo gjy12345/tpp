@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gjyniubi.cinema.admin.core.doc.type.mapper.DocFilmTypeMapper">
+
+    <select id="selectTypeList" resultType="cn.gjyniubi.cinema.admin.core.doc.type.dto.FilmTypeDto">
+        select doc_film_type.*,sys_user.name as createUser from doc_film_type
+        left join sys_user on sys_user.id=doc_film_type.create_by
+        where doc_film_type.logic_del=0
+        <if test="name!=null and name!=''">
+            and doc_film_type.name like concat('%',#{name},'%')
+        </if>
+        <if test="status!=null">
+            and doc_film_type.status = #{status}
+        </if>
+        order by doc_film_type.id desc
+        limit #{page},#{pageSize}
+    </select>
+
+    <select id="selectTypeListCount" resultType="java.lang.Integer">
+        select count(*) from doc_film_type
+        where doc_film_type.logic_del=0
+        <if test="name!=null and name!=''">
+            and doc_film_type.name like concat('%',#{name},'%')
+        </if>
+        <if test="status!=null">
+            and doc_film_type.status = #{status}
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gjyniubi.cinema.app.core.cinema.mapper.CinemaMapper">
+
+    <select id="selectSimpleCinemaList" resultType="cn.gjyniubi.cinema.app.core.cinema.dto.SimpleCinemaDto">
+        select id,uid,concat(position,address) as fullPosition,name from doc_cinema
+        where id>#{cq.offset} and logic_del=0 and status = 1
+        <if test="jq!=null and jq.query!=null and jq.query!=''">
+            <if test="jq.useLike==true">
+                and doc_cinema.position like concat('%',#{jq.query},'%')
+            </if>
+            <if test="jq.useLike==false">
+                and doc_cinema.position = #{jq.query}
+            </if>
+        </if>
+        order by id
+        limit #{cq.pageSize}
+    </select>
+    <select id="selectSimpleScheduleCinemaList"
+            resultType="cn.gjyniubi.cinema.app.core.cinema.dto.SimpleCinemaDto">
+        SELECT id,uid,concat(position,address) as fullPosition,name from doc_cinema
+        where id in (
+            select distinct cinema_id from film_schedule
+            where logic_del = 0 and film_id = #{scq.filmId} and film_schedule.begin_time &gt;= SYSDATE() and cinema_id in (
+                select id from doc_cinema
+                where logic_del=0 and status = 1
+                <if test="jq!=null and jq.query!=null and jq.query!=''">
+                    <if test="jq.useLike==true">
+                        and doc_cinema.position like concat('%',#{jq.query},'%')
+                    </if>
+                    <if test="jq.useLike==false">
+                        and doc_cinema.position = #{jq.query}
+                    </if>
+                </if>
+            ) and TO_DAYS(begin_time) = TO_DAYS(#{scq.day})
+        )
+        order by id desc
+        limit #{scq.offset},#{scq.pageSize}
+    </select>
+</mapper>

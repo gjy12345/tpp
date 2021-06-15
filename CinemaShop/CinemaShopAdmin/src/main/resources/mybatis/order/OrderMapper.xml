@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gjyniubi.cinema.admin.core.order.list.mapper.OrderMapper">
+
+    <select id="selectOrderList" resultType="cn.gjyniubi.cinema.admin.core.order.list.dto.OrderDto">
+        select `order`.*,doc_film.name as filmName,customer.nickname as customerName from `order`
+        left join customer on customer.id = `order`.cus_id
+        left join film_schedule on film_schedule.id = `order`.schedule_id
+        left join doc_film on doc_film.id = film_schedule.film_id
+        <where>
+            <if test="status!=null">
+                and `order`.status = #{status}
+            </if>
+            <if test="begin!=null">
+                and `order`.create_time  &gt;= #{begin}
+            </if>
+            <if test="end!=null">
+                and `order`.create_time  &lt;= #{end}
+            </if>
+            <if test="phone!=null and phone!=''">
+                and customer.phone = #{phone}
+            </if>
+            <if test="filmName!=null and filmName!=''">
+                and doc_film.name like concat('%',#{filmName},'%')
+            </if>
+        </where>
+        order by `order`.id desc limit #{page},#{pageSize}
+    </select>
+    <select id="selectOrderListCount" resultType="java.lang.Integer">
+        select count(*) from `order`
+        left join customer on customer.id = `order`.cus_id
+        left join film_schedule on film_schedule.id = `order`.id
+        left join doc_film on doc_film.id = film_schedule.film_id
+        <where>
+            <if test="status!=null">
+                and `order`.status = #{status}
+            </if>
+            <if test="begin!=null">
+                and `order`.create_time  &gt;= #{begin}
+            </if>
+            <if test="end!=null">
+                and `order`.create_time  &lt;= #{end}
+            </if>
+            <if test="phone!=null and phone!=''">
+                and customer.phone = #{phone}
+            </if>
+            <if test="filmName!=null and filmName!=''">
+                and doc_film.name like concat('%',#{filmName},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

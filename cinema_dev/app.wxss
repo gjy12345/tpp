@@ -1,0 +1,93 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+.head-img{
+  display:block; 
+  overflow:hidden; 
+  border-radius: 50%;
+}
+.green_btn{
+  margin-top: 20px;
+  background-color: green;
+  color: white;
+  font-weight: normal;
+  font-size: 25rpx;
+}
+.dialog_mk{
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background: #f9f9f9;
+  width: 100%;
+  height: 100%;
+  background-color:#000;
+  filter:alpha(opacity=50);
+  -moz-opacity:0.5;
+  opacity:0.5;
+}
+.dialog_body{
+  display: block;
+  position: fixed;
+  top: 20%;
+  width: 80%;
+  left: 10%;
+  background-color: white;
+  z-index: 100000;
+}
+.dialog_title{
+  display:block;
+  color:#000;
+  font-size:16px;
+  font-weight:700;
+  text-align:center;
+  padding-top:5.4%;
+  margin: 0 auto;
+}
+.dialog_content{
+  margin: 10px;
+}
+.dialog_btns{
+  display: flex;
+  align-items: center;
+}
+.dialog_btns button{
+  padding: 10px;
+}
+.red_btn{
+  margin-top: 10px;
+  background-color: red;
+  color: white;
+  font-weight: normal;
+  font-size: 25rpx;
+}
+.top_logo{
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.top_head_layout{
+  display: flex;
+}
+.gray_line{
+  background-color: gainsboro;
+  height: 1px;
+  width: 100%;
+}
+.score{
+  color: gold;
+  font-weight: bold;
+}
+.mr_8px{
+  margin-right: 8px;
+}

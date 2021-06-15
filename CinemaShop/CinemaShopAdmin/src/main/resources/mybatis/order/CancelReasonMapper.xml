@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gjyniubi.cinema.admin.core.order.reason.mapper.CancelReasonMapper">
+
+    <select id="selectReasonList" resultType="cn.gjyniubi.cinema.admin.core.order.reason.dto.OrderCancelReasonDto">
+        select order_cancel_reason.*,sys_user.name as createUser from order_cancel_reason
+        left join sys_user on sys_user.id = order_cancel_reason.create_by
+        where order_cancel_reason.logic_del = 0
+        <if test="reason!=null and reason!=''">
+            and order_cancel_reason.reason like concat('%',#{reason},'%')
+        </if>
+        <if test="status!=null">
+            and order_cancel_reason.status = #{status}
+        </if>
+        order by order_cancel_reason.id
+        limit #{page},#{pageSize}
+    </select>
+    <select id="selectReasonListCount" resultType="java.lang.Integer">
+        select count(*) from order_cancel_reason
+        where order_cancel_reason.logic_del = 0
+        <if test="reason!=null and reason!=''">
+            and order_cancel_reason.reason like concat('%',#{reason},'%')
+        </if>
+        <if test="status!=null">
+            and order_cancel_reason.status = #{status}
+        </if>
+    </select>
+</mapper>

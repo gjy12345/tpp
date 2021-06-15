@@ -1,0 +1,122 @@
+<view class="root">
+    <view class="top_info">
+        <view wx:if="{{order?order.status===0:false}}" style="display:flex;justify-content: center;">
+            需付金额：<view style="color:red">￥{{order?order.price/100:''}}</view>
+        </view>
+        {{msg}}
+    </view>
+    <view class="content" wx:if="{{order}}">
+        <view class="order_info">
+            <view class="film_cover_layout">
+                <image src="{{filmInfoDto?resourceUrl+filmInfoDto.cover:''}}" class="film_cover"></image>
+            </view>
+            <view class="texts">
+                <view class="film_name">{{filmInfoDto.name}}</view>
+                <view class="gray_text">
+                    {{begin}} ~ {{end}} ({{filmInfoDto.lang}})
+                </view>
+                <view class="gray_text">
+                    {{cinemaDto.name}}
+                </view>
+                <view class="gray_text">
+                    {{hallName}}
+                </view>
+                <view class="gray_text">
+                    {{cinemaDto.fullPosition}}
+                </view>
+                <view class="gray_text">
+                    <block wx:for="{{orderItems}}" wx:key="id">
+                        {{index>0?',':''}}
+                        {{item.row}}排{{item.col}}座
+                    </block>
+                </view>
+            </view>
+        </view>
+        <view class="gray_line" style="margin-top:10rpx" wx:if="{{order.status===1||order.status===2}}"></view>
+        <view class="barcode_layout" wx:if="{{order.status===1||order.status===2}}">
+            <view class="t1">
+                取电影票
+            </view>
+            <view class="barcode">
+                <image src="{{serverUrl+'/util/barcode/'+orderNum}}" class="img {{expire?'sx':''}}"></image>
+                <view class="sx_text" wx:if="{{expire}}">
+                    已放映
+                </view>
+            </view>
+            <view class="gray_text" style="text-align:center">
+                订单编号:{{order.orderNum}}
+            </view>
+        </view>
+        <view class="gray_line" style="margin-top:20rpx"></view>
+        <view class="cinema_layout">
+            <view class="left">
+                <view class="t1">
+                    {{cinemaDto.name}}
+                </view>
+                <view class="gray_text" style="margin-left: 1.2vh">
+                    {{cinemaDto.fullPosition}}
+                </view>
+            </view>
+            <view class="right">
+                <image src="/images/icon/bh.png"></image>
+            </view>
+        </view>
+        <view class="gray_line" style="margin-top:20rpx"></view>
+        <view class="order_info_layout">
+            <view class="order_num" wx:if="{{order.status===1||order.status===2}}">
+                <view class="t1">
+                    实付金额：￥{{order?order.price/100:''}}
+                </view>
+                <view class="view_info" bindtap="showItems">查看详细</view>
+            </view>
+            <view class="gray_text" style="margin-left: 1.2vh">
+                订单号：{{order.orderNum}}
+            </view>
+            <view class="gray_text" style="margin-left: 1.2vh" wx:if="{{order.status===1||order.status===2}}">
+                购买时间：{{order.payTime}}
+            </view>
+            <view class="gray_text" style="margin-left: 1.2vh">
+                手机号：{{order.phone}}
+            </view>
+        </view>
+        <view class="gray_line" style="margin-top:20rpx"></view>
+        <view class="order_info_layout">
+            <view class="t1">
+                观影须知
+            </view>
+            <view class="gray_text" style="margin-left: 1.2vh">1.请提前到达影院现场，找到自助取票机，打印纸质电影票，完成
+                取票。</view>
+            <view class="gray_text" style="margin-left: 1.2vh">2 .如现场自助取票机无法打印电影票，请联系影院工作人员处理。</view>
+            <view class="gray_text" style="margin-left: 1.2vh">3 .凭打印好的纸质电影票，检票入场观影。</view>
+            <view class="gray_text" style="margin-left: 1.2vh">4 .如有开具所购电影票发票的需求，请保留好电影票根，尽量在观
+                影当天联系影城工作人员进行开具，如遇特殊情况请及时联系淘票
+                票人工客服咨询。</view>
+            <view class="gray_text" style="margin-left: 1.2vh">5 .改签、退票服务由影城决定，特殊场次及使用兑换券的场次不支
+                持改签、退票。</view>
+        </view>
+        <view class="gray_line" style="margin-top:20rpx"></view>
+        <view class="kf_layout">
+            <view class="t1">在线客服</view>
+        </view>
+    </view>
+</view>
+<view class="show_items" wx:if="{{showItemsDilaog}}">
+    <view class="dialog_mk">
+    </view>
+    <view class="dialog_body">
+        <view class="dialog_title">详情</view>
+        <view class="dialog_content">
+            <view class="tickets_layout">
+                <view class="ticket" wx:for="{{orderItems}}" wx:key="this">
+                    <image src="/images/icon/ticket.png" class="icon"></image>
+                    <view class="position">￥{{item.price/100}}</view>
+                    <view class="position">{{item.row}} 排 {{item.col}} 座</view>
+                    <view class="gray_text">{{item.type===1?'单人座':'情侣座'}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="dialog_btns">
+            <button class="dialog_btn_confim" bindtap="showItems">确定</button>
+        </view>
+    </view>
+</view>

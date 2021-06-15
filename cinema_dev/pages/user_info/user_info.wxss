@@ -1,0 +1,23 @@
+.line{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    margin: 10px;
+    font-size: 28rpx;
+}
+.label{
+    flex:1;
+    margin-right: auto;
+    font-size: 28rpx;
+}
+.value{
+    justify-content: flex-end;
+    width: 120px;
+    text-align: right;
+    margin-right: 10px;
+    word-wrap:break-word;
+}
+.avatar_value{
+    justify-content: flex-end;
+    width: 70px;
+}

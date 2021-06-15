@@ -1,0 +1,76 @@
+<scroll-view>
+    <view class="line">
+        <view class="label">
+            头像:
+        </view>
+        <view class="avatar_value" bindtap="changeAvatar">
+            <image class="head-img" src="{{avatar}}" style="width:70px;height:70px;text-align:right"></image>
+        </view>
+    </view>
+    <view class="gray_line" />
+    <view class="line">
+        <view class="label">
+            昵称:
+        </view>
+        <view class="value" data-type="nickname" data-inputDataType="text" data-value="{{userInfo.nickname}}"
+            data-pla="昵称" bindtap="showInputDialog">
+            {{userInfo.nickname}}
+        </view>
+    </view>
+    <view class="gray_line" />
+    <view class="line">
+        <view class="label">
+            手机号:
+        </view>
+        <view class="value" data-type="phone" data-inputDataType="number" data-value="{{userInfo.phone}}" data-pla="手机号"
+            bindtap="showInputDialog">
+            {{userInfo.phone}}
+        </view>
+    </view>
+    <view class="gray_line" />
+    <view class="line">
+        <view class="label">
+            生日:
+        </view>
+        <view class="value">
+            <picker mode="date" value="{{date}}" start="1900-09-01" end="{{today}}" value="{{userInfo.birthday}}" bindchange="bindBirthChange">
+                <view class="picker">
+                    {{userInfo.birthday}}
+                </view>
+            </picker>
+        </view>
+    </view>
+    <view class="gray_line" />
+    <view class="line">
+        <view class="label">
+            性别:
+        </view>
+        <view class="value">
+            <picker bindchange="bindSexChange" value="{{index}}" range="{{sexArray}}">
+                <view class="picker">
+                    {{(userInfo.sex===1||userInfo.sex==='1')?'男':'女'}}
+                </view>
+            </picker>
+        </view>
+    </view>
+    <view class="gray_line" />
+    <view>
+        <button class="green_btn" bindtap="updateUserInfo">保存</button>
+        <button class="red_btn" bindtap="logout">退出登录</button>
+    </view>
+    <view wx:if="{{dialogVisible}}">
+        <view class="dialog_mk">
+        </view>
+        <view class="dialog_body">
+            <view class="dialog_title">修改数据</view>
+            <view class="dialog_content">
+                <input data-inpval="tempInput" bindinput="onInputChange" placeholder="请输入{{inputPlaceholder}}"
+                    value="{{tempInput}}" type="{{inputDataType}}" />
+            </view>
+            <view class="dialog_btns">
+                <button class="dialog_btn_cancel" bindtap="inputCancel">取消</button>
+                <button class="dialog_btn_confim" bindtap="inputConfim">确定</button>
+            </view>
+        </view>
+    </view>
+</scroll-view>

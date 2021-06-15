@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gjyniubi.cinema.app.core.comment.mapper.CommentMapper">
+    <select id="selectFilmRecentComment"
+            resultType="cn.gjyniubi.cinema.app.core.comment.dto.SimpleCommentDto">
+        select order_comment.*,customer.nickname as cusName,customer.avatar as avatar from order_comment
+                                                                                               left join customer on customer.id = order_comment.cus_id
+        where order_comment.film_id = #{filmId} and order_comment.logic_del = 0
+        order by order_comment.id desc limit 10
+    </select>
+</mapper>

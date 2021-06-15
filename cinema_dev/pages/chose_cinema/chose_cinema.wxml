@@ -1,0 +1,50 @@
+<view>
+    <view class="top_head_layout" id="top">
+        <image src="../../images/icon/tpp.svg" class="top_logo"></image>
+        <picker mode="multiSelector" bindchange="bindRegionChange" range="{{region}}" range-key="name"
+            bindcolumnchange="onRegionColumnChange" bindchange="onRegionChange"><text
+                class="top_city">{{showPosition}}</text>
+        </picker>
+        <view class="down"></view>
+        <view style="flex:1"></view>
+        <view class="swich_menu">
+            <text class="switch_text" data-value="0"
+                bindtap="selectAvea">{{nowChoseAvea===null?'筛选区域':nowChoseAvea}}</text>
+        </view>
+        <view class="down"></view>
+        <view class="mr_8px"></view>
+    </view>
+    <view class="gray_line" id="top_line"></view>
+    <view class="chose_days" id="chose_days">
+        <view class="item {{currentDay===index?'day_item_active':''}}" wx:for="{{showDays}}" wx:key="this"
+            data-value="{{index}}" bindtap="changeDay">
+            {{item}}
+        </view>
+    </view>
+    <view class="tips" id="tips">
+        <text>以下影院有场次</text>
+    </view>
+    <view>
+        <view scroll-y="true" style="height:{{height}}px" bindscrolltolower="loadData">
+            <view class="cinema_item" wx:for="{{cinemaList}}" data-value="{{item.uid}}" wx:key="index" bindtap="goTicket">
+                <view class="cinema_name">{{item.name}}</view>
+                <view class="cinema_address">{{item.fullPosition}}</view>
+                <view class="gray_line"></view>
+            </view>
+        </view>
+        <view wx:if="{{dialogVisible}}">
+            <view class="dialog_mk" style="margin-top:{{top_layout_height}}px">
+            </view>
+            <view class="chose_body" style="top:{{top_layout_height}}px;height:auto;padding-bottom:10px">
+                <view class="dialog_content">
+                    <text class="item {{listQuery.area===null?'item_active':''}}" data-value="{{null}}"
+                        bindtap="choseAvea">不限制</text>
+                    <block wx:for="{{aveaItems}}" wx:key="id">
+                        <text class="{{item.name?'item':'blank_item'}} {{listQuery.area===item.id?'item_active':''}}"
+                            data-value="{{item}}" bindtap="{{item.name?'choseAvea':''}}">{{item.name}}</text>
+                    </block>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

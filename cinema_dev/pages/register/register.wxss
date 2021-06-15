@@ -1,0 +1,36 @@
+#logo{
+    width:100px;
+    height: 100px;
+}
+#top_head{
+    height: 200px;
+    display: flex;
+    display: -webkit-flex; /* Safari */
+    justify-content:center;
+    align-items: center;
+}
+.center_text{
+    text-align: center;
+}
+.quick_login{
+    background-color: green;
+    color: white;
+}
+.btn{
+    margin-top: 20px;
+    font-weight: normal;
+}
+.input_phone{
+    width: 80%;
+    border: 1px solid #ccc;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+.input_layout{
+    margin-top: 20px;
+    display: flex;
+    display: -webkit-flex; /* Safari */
+    justify-content:center;
+}

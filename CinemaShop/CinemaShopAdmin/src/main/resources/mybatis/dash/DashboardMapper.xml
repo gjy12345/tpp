@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gjyniubi.cinema.admin.core.dashboard.mapper.DashboardMapper">
+
+    <select id="selectDayNewCustomer"
+            resultType="cn.gjyniubi.cinema.admin.core.dashboard.dto.DataItemDto">
+        select DATE(create_time) as day,COUNT(*) as `count` from customer
+        where create_time &gt;= #{begin} and create_time &lt;= #{end}
+        GROUP BY day order by day
+    </select>
+    <select id="selectDayIncome" resultType="cn.gjyniubi.cinema.admin.core.dashboard.dto.DataItemDto">
+        SELECT DATE(create_time) as day,sum(price) as `count` from `order`
+        where (`status` = 1 or `status` = 2)
+        and create_time &gt;= #{begin} and create_time &lt;= #{end}
+        GROUP BY day order by day
+    </select>
+    <select id="selectDayOrder" resultType="cn.gjyniubi.cinema.admin.core.dashboard.dto.DataItemDto">
+        SELECT DATE(create_time) as day,count(*) as `count` from `order`
+        where  create_time &gt;= #{begin} and create_time &lt;= #{end}
+        GROUP BY day order by day
+    </select>
+    <select id="selectDayNewCommont" resultType="cn.gjyniubi.cinema.admin.core.dashboard.dto.DataItemDto">
+        SELECT DATE(create_time) as day,count(*) as `count` from order_comment
+        where  create_time &gt;= #{begin} and create_time &lt;= #{end}
+        GROUP BY day order by day
+    </select>
+</mapper>

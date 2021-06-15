@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gjyniubi.cinema.admin.core.doc.cinema.mapper.CinemaMapper">
+
+    <select id="selectCinemaList" resultType="cn.gjyniubi.cinema.admin.core.doc.cinema.dto.CinemaDto">
+        select doc_cinema.*,sys_user.name as createUser from doc_cinema
+        left join sys_user on sys_user.id = doc_cinema.create_by where doc_cinema.logic_del=0
+        <if test="qc.name!=null and qc.name!=''">
+            and doc_cinema.name like concat('%',#{qc.name},'%')
+        </if>
+        <if test="qc.status!=null">
+            and doc_cinema.status = #{qc.status}
+        </if>
+        <if test="lq.query!=null and lq.query!=''">
+            <if test="lq.useLike==true">
+                and doc_cinema.position like concat('%',#{lq.query},'%')
+            </if>
+            <if test="lq.useLike==false">
+                and doc_cinema.position = #{lq.query}
+            </if>
+        </if>
+        <if test="qc.id!=null">
+            and doc_cinema.id = #{qc.id}
+        </if>
+        order by doc_cinema.id desc
+        limit #{qc.page},#{qc.pageSize}
+    </select>
+
+    <select id="selectCinemaCount" resultType="java.lang.Integer">
+        select count(*) from doc_cinema where doc_cinema.logic_del=0
+        <if test="qc.name!=null and qc.name!=''">
+            and doc_cinema.name like concat('%',#{qc.name},'%')
+        </if>
+        <if test="qc.status!=null">
+            and doc_cinema.status = #{qc.status}
+        </if>
+        <if test="lq.query!=null and lq.query!=''">
+            <if test="lq.useLike">
+                and doc_cinema.position like concat('%',#{lq.query},'%')
+            </if>
+            <if test="lq.useLike==false">
+                and doc_cinema.position = #{lq.query}
+            </if>
+        </if>
+        <if test="qc.id!=null">
+            and doc_cinema.id = #{qc.id}
+        </if>
+    </select>
+</mapper>

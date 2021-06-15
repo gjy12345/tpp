@@ -1,0 +1,17 @@
+<view id="root">
+    <view class="score_layout">
+        <view class="left">评分:</view>
+        <view class="score">
+            <image wx:for="{{scoreChoses}}" class="sc_icon" src="{{item}}" data-value="{{index}}"  bindtap="clickIcon"></image>
+        </view>
+        <view class="sc_number">
+            {{score}}
+        </view>
+    </view>
+    <view class="text_layout">
+        <textarea class="ta" bindinput="inputComment"></textarea>
+    </view>
+    <view wx:if="{{!hasSubmit}}">
+        <button class="green_btn" style="width:100%" bindtap="submitContent">提交</button>
+    </view>
+</view>

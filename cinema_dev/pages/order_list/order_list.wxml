@@ -1,0 +1,69 @@
+<view wx:if="{{orderList.length>0}}" style="height:100vh;background-color:#f5f6f8">
+
+    <view class="list_content">
+
+        <view class="order_item " wx:for="{{orderList}}" wx:key="orderNum">
+            <view class="top">
+                <view class="order_num">
+                    订单编号: {{item.orderNum}}
+                </view>
+                <view class="status">
+                    <block wx:if="{{item.status===0}}">
+                        已下单未支付
+                    </block>
+                    <block wx:if="{{item.status===1}}">
+                        已支付完成
+                    </block>
+                    <block wx:if="{{item.status===-2}}">
+                        超时自动取消
+                    </block>
+                    <block wx:if="{{item.status===-1}}">
+                        已退款
+                    </block>
+                    <block wx:if="{{item.status===2}}">
+                        已使用
+                    </block>
+                </view>
+            </view>
+            <view class="gray_line"></view>
+            <view class="content" data-value="{{item}}" bindtap="goUse">
+                <view class="left">
+                    <view class="film_name">{{item.filmName}}</view>
+                    <view class="cinema_info">{{item.cinemaName}} {{item.hallName}}</view>
+                </view>
+                <view class="right ">
+                    <block>
+                        <view class="btn pj" data-value="{{item}}" catchtap="goComment" wx:if="{{item.status===2&&item.commonStatus===0}}">
+                            评价
+                        </view>
+                        <view class="btn ypj" wx:if="{{item.status===2&&item.commonStatus===1}}">
+                            已评价
+                        </view>
+                        <view class="btn red_btn" data-index="{{index}}" data-value="{{item}}" wx:if="{{item.status===0}}" catchtap="goPay">
+                            去支付
+                        </view>
+                        <view class="btn pr" data-value="{{item}}" catchtap="goUse" wx:if="{{item.status===1 && !item.expire}}">
+                            去使用
+                        </view>
+                        <view class="btn sx" wx:if="{{item.status===1 && item.expire}}">
+                            已失效
+                        </view>
+                    </block>
+                </view>
+            </view>
+            <view class="gray_line"></view>
+            <view class=" order_time" >观影时间: {{item.begin}} ~ {{item.end}}</view>
+            <view class="order_time">下单时间: {{item.createTime}}</view>
+            <view class="order_time" wx:if="{{item.payTime}}">支付时间: {{item.payTime}}</view>
+        </view>
+
+    </view>
+
+</view>
+
+<view style="height:100vh;color:gray;font-size:25rpx;display:flex;align-items:center;text-align:center"
+    wx:if="{{orderList.length===0}}">
+    <view style="text-align:center;width:100vw">
+        {{msg}}
+    </view>
+</view>

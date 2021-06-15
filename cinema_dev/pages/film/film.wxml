@@ -1,0 +1,79 @@
+<view id="root">
+    <scroll-view id="content" scroll-y="true" style="height:{{contentHeight}}px">
+        <view class="film_item">
+            <view class="film_cover_layout" data-value="{{uid}}" bindtap="showFilm">
+                <image src="{{film.cover?resourceUrl+film.cover:''}}" class="film_cover"></image>
+            </view>
+            <view class="film_info">
+                <view style="display:flex;align-items:center">
+                    <view class="film_name">{{film.name}}</view>
+                    <view class="score" style="margin-left:10rpx;font-size:38rpx">{{film.score?film.score:'暂无'}}</view>
+                </view>
+                <view class="blank_view"></view>
+                <view class="gray_text auto_hidden_text"
+                    style="overflow: hidden;text-overflow: ellipsis; display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;">导演:{{film.director}}</view>
+                <view class="gray_text">类型: 
+                    <block wx:for="{{film.types}}" wx:key="id">
+                        {{index>0?',':''}}
+                        {{item.name}}
+                    </block>
+                </view>
+                <view class="gray_text">区域/时长: {{film.region}}/{{film.duration}}/{{film.lang}}
+                </view>
+            </view>
+        </view>
+        <view class="des_layout" bindtap="clickShowFullDes">
+            <view class="des"
+                style="{{showFull?'':'overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;'}}">
+                {{film.describe}}
+            </view>
+            <view class="showFullBt" wx:if="{{!showFull}}">点击展开更多</view>
+        </view>
+        <view class="black_title mt2vw">主演列表</view>
+        <view class="stars_list" scroll-x="true">
+            <view class="star_item"  wx:for="{{stars}}" wx:key="this">
+                <image src="/images/img/fail_star.png" class="star_img"></image>
+                <text class="star_name">{{item}}</text>
+            </view>
+        </view>
+        <view class="black_title mt2vw">票房</view>
+        <view class="pf_layout">
+            <view class="pf">
+                <text class="black_title">{{film.today}}</text>
+                <text class="gray_text">今日售出</text>
+            </view>
+            <view class="pf">
+                <text class="black_title">{{film.allCount}}</text>
+                <text class="gray_text">总售出</text>
+            </view>
+            <view class="pf">
+                <text class="black_title">{{film.allSum/100}}</text>
+                <text class="gray_text">累计票房</text>
+            </view>
+        </view>
+        <view class="black_title mt2vw">观众热评</view>
+        <view class="common_layout">
+            <view class="common_item" wx:for="{{comments}}" wx:key="this">
+                <view class="top">
+                    <image class="head-img" src="{{item.avatar?resourceUrl+item.avatar:''}}"></image>
+                    <view class="top_info">
+                        <text class="gray_text common_name">{{item.cusName}}</text>
+                        <text class="gray_text">评分: {{item.score}}</text>
+                    </view>
+                </view>
+                <view class="common_content">
+                    <text>{{item.content}}</text>
+                </view>
+                <view class="common_time">{{item.createTime}}</view>
+            </view>
+        </view>
+        <!-- <view wx:if="{{comments&&comments.length>0}}" class="look_more_common">查看更多评论</view> -->
+        <view wx:if="{{!comments||comments.length===0}}" class="look_more_common">暂无评论</view>
+    </scroll-view>
+    <view id="buy" bindtap="go_buy" wx:if="{{showBuy}}">
+        <view class="bug_bt">选票购座</view>
+    </view>
+    <view id="blank">
+        
+    </view>
+</view>

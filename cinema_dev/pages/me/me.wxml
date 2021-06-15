@@ -1,0 +1,62 @@
+<view class="content">
+  <view class="hr"></view>
+  <view class="bg">
+    <view class="head">
+      <view class="headIcon">
+        <image class="head-img" src="{{avatar}}" style="width:70px;height:70px;"></image>
+      </view>
+      <view wx:if="{{customer!=null}}" class="name" bindtap="showInfo">
+        {{customer.nickname}}
+      </view>
+      <view wx:else class="name" bindtap="login">
+        立即登录
+      </view>
+    </view>
+  </view>
+  <view class="hr"></view>
+  <view class="item"  bindtap="toOrderList">
+     <view class="order">我的订单</view>
+  </view>
+  <!-- <view class="nav">
+    <view class="nav-item" data-value="0" bindtap="toOrderLit">
+      <view>
+        <image src="/images/icon/qb.png"  style="width:25px;height:25px;"></image>
+      </view>
+      <view>
+        全部
+      </view>
+    </view>
+    <view class="nav-item" data-value="1" bindtap="toOrderLit">
+      <view>
+        <image src="/images/icon/dzf.png" style="width:25px;height:25px;"></image>
+      </view>
+      <view>
+        待支付
+      </view>
+    </view>
+    <view class="nav-item" data-value="2" bindtap="toOrderLit">
+      <view>
+        <image src="/images/icon/ysy.png" style="width:25px;height:25px;"></image>
+      </view>
+      <view>
+        已使用
+      </view>
+    </view>
+    <view class="nav-item" data-value="3" bindtap="toOrderLit">
+      <view>
+        <image src="/images/icon/sh.png" style="width:25px;height:25px;"></image>
+      </view>
+      <view>
+        退款/售后
+      </view>
+    </view>
+  </view> -->
+  <view class="hr"></view>
+  <!-- <view class="item">
+     <view class="order">想看的电影</view>
+  </view> -->
+  <view class="item">
+     <view class="order">帮助中心-咨询票小蜜</view>
+  </view>
+  <view class="hr"></view>
+</view>

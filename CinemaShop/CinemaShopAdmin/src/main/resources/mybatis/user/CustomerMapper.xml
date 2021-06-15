@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gjyniubi.cinema.admin.core.user.mapper.CustomerMapper">
+
+    <select id="selectCustomerList" resultType="cn.gjyniubi.cinema.common.entry.Customer">
+        select * from customer
+        where customer.logic_del = 0
+        <if test="sex!=null">
+            and customer.sex = #{sex}
+        </if>
+        <if test="locked!=null">
+            and customer.locked = #{locked}
+        </if>
+        <if test="phone!=null and phone!=''">
+            and customer.phone = #{phone}
+        </if>
+        <if test="name!=null and name!=''">
+            and customer.username like concat('%',#{name},'%')
+            and customer.nickname like concat('%',#{name},'%')
+        </if>
+        <if test="begin!=null">
+            and customer.create_time  &gt;= #{begin}
+        </if>
+        <if test="end!=null">
+            and customer.create_time  &lt;= #{end}
+        </if>
+        order by customer.id desc
+        limit #{page},#{pageSize}
+    </select>
+
+    <select id="selectCustomerCount" resultType="java.lang.Integer">
+        select count(*) from customer
+        where customer.logic_del = 0
+        <if test="sex!=null">
+            and customer.sex = #{sex}
+        </if>
+        <if test="locked!=null">
+            and customer.locked = #{locked}
+        </if>
+        <if test="phone!=null and phone!=''">
+            and customer.phone = #{phone}
+        </if>
+        <if test="name!=null and name!=''">
+            and customer.nickname like concat('%',#{name},'%')
+        </if>
+        <if test="begin!=null">
+            and customer.create_time  &gt;= #{begin}
+        </if>
+        <if test="end!=null">
+            and customer.create_time  &lt;= #{end}
+        </if>
+    </select>
+</mapper>

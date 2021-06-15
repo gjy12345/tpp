@@ -1,0 +1,121 @@
+.top_city {
+    line-height: 30px;
+}
+
+.down {
+    user-select: none;
+    color: #000;
+    font-family: Helvetica Neue, Helvetica, Arial, Hiragino Sans GB, Microsoft Yahei, STXihei, SimHei, WenQuanYi Micro Hei, Droid Sans, sans-serif;
+    font-size: 0;
+    line-height: 13.3vw;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    margin: 12px;
+    padding: 0;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 3px;
+    width: 8px;
+    height: 4px;
+    position: relative;
+}
+
+.down:before {
+    content: "";
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid #333;
+    display: block;
+    position: absolute;
+    margin: -1px 0 0 -2px;
+}
+
+.swich_menu_text {
+    margin-right: 15px;
+    line-height: 30px;
+    margin-left: 10px;
+    font-weight: bold;
+    color: gray;
+}
+
+.text_active {
+    color: red;
+    border-bottom: 1px solid red;
+    border-bottom-width: 2px;
+    padding-bottom: 2px;
+}
+
+.gray_text {
+    margin: 0.6vw;
+    margin-left: 2vw;
+    display: block;
+    color: gray;
+    font-size: 14px;
+}
+
+.switch_text {
+    padding-top: 10px;
+    margin-right: 5px;
+    line-height: 30px;
+    margin-left: 10px;
+    font-weight: normal;
+    font-size: 28rpx;
+}
+
+.cinema_item {
+    margin: 4vw;
+}
+
+.cinema_name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.cinema_address {
+    margin-top: 8px;
+    color: gray;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.chose_body {
+    display: block;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    z-index: 100000;
+}
+.dialog_content{
+    display: flex;
+    width: 90%;
+    height: auto;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 5%;
+}
+.dialog_content>.item{
+    width: 20%;
+    text-align: center;
+    border: 1px solid gray;
+    margin-top: 20rpx;
+    color: gray;
+    padding: 5px;
+    font-size: 27rpx;
+}
+.dialog_content>.item_active{
+    color: red;
+    border: 1px solid red;
+}
+.dialog_content>.blank_item{
+    width: 20%;
+    text-align: center;
+    margin-top: 15px;
+    padding: 5px;
+}

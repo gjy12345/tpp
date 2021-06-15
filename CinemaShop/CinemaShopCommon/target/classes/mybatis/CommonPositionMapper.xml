@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gjyniubi.cinema.common.mapper.CommonPositionMapper">
+
+    <select id="selectCities" resultType="cn.gjyniubi.cinema.common.entry.District">
+        select * from district where level=1
+        <if test="provinceId!=null and provinceId!=''">
+            and pid=#{provinceId}
+        </if>
+    </select>
+    <select id="selectCountries" resultType="cn.gjyniubi.cinema.common.entry.District">
+        select * from district where level=2
+        <if test="cityId!=null and cityId!=''">
+            and pid=#{cityId}
+        </if>
+    </select>
+</mapper>

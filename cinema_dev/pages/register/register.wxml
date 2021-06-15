@@ -1,0 +1,27 @@
+<view>
+    <view id="top_head">
+        <image src="/images/icon/head.jpg" alt="" id="logo" />
+    </view>
+    <view class="center_text">
+        请填写注册信息
+    </view>
+    <view class="input_layout">
+        <input type="text" data-inpval='phone' class="input_phone" placeholder='输入手机号' bindinput="onInputChange" value="{{phone}}"/>
+    </view>
+    <view class="input_layout">
+        <input type="password" data-inpval='password' class="input_phone" placeholder='输入密码' bindinput="onInputChange" value="{{password}}"/>
+    </view>
+    <view class="input_layout">
+        <input type="password" data-inpval='rePassword' class="input_phone" placeholder='重复密码' bindinput="onInputChange" value="{{rePassword}}"/>
+    </view>
+    <view id="btn_layout">
+        <button class="quick_login btn" style="width:60%;margin-top:40px" bindtap="quickRegister">注册</button>
+        <button class="no_login btn" style="width:60%" bindtap="noRegister">暂不注册</button>
+        <view class="center_text" style="margin-top:20px">
+            已有账号？
+            <view style="display:inline;color:#1E90FF" bindtap="jumpLogin">
+                点我登录
+            </view>
+        </view>
+    </view>
+</view>

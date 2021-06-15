@@ -1,0 +1,15 @@
+project:
+  swagger:
+    enabled: false
+    path: cn.gjyniubi.cinema.app
+    title: 管理员接口
+    version: V1.0
+    description: 管理员接口文档
+    context-path: /
+  xss:
+    enabled: false
+    urlPatterns: /*
+    excludes:
+  file:
+    save-path: /Users/gujianyang/Desktop/upload
+  local-temp-file-dir: /Users/gujianyang/Desktop/upload

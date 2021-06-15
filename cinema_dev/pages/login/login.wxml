@@ -1,0 +1,24 @@
+<view>
+    <view id="top_head">
+        <image src="/images/icon/tpp.svg" alt="" id="logo" />
+    </view>
+    <view class="center_text">
+        需要登录或注册账号
+    </view>
+    <view class="input_layout">
+        <input type="text" data-inpval='phone' class="input_phone" placeholder='输入手机号' bindinput="onInputChange" value="{{phone}}"/>
+    </view>
+    <view class="input_layout">
+        <input type="password" data-inpval='password' class="input_phone" placeholder='输入密码' bindinput="onInputChange" value="{{password}}"/>
+    </view>
+    <view id="btn_layout">
+        <button class="quick_login btn" style="width:60%;margin-top:40px" bindtap="quickLogin">登录</button>
+        <button class="no_login btn" style="width:60%" bindtap="noLogin">暂不登录</button>
+        <view class="center_text" style="margin-top:20px">
+            没有账号？
+            <view style="display:inline;color:#1E90FF" bindtap="jumpReister">
+                点我注册
+            </view>
+        </view>
+    </view>
+</view>

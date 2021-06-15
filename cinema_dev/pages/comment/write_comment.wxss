@@ -1,0 +1,28 @@
+.info{
+    color: gray;
+}
+#root{
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+.sc_icon{
+    width: 50rpx;
+    height: 47rpx;
+    margin-left: 10rpx;
+}
+.score_layout{
+    display: flex;
+}
+.sc_number{
+    color: goldenrod;
+    margin-left: 20rpx;
+    font-weight: bold;
+}
+.ta{
+    border: 1px solid #ccc;
+    width: 98%;
+    margin-top: 20rpx;
+    padding-top: 10rpx;
+    padding-left: 1%;
+    padding-right: 1%;
+}
